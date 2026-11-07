@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1"/>
+      <stop offset=".52" stop-color="#3b82f6"/>
+      <stop offset="1" stop-color="#06b6d4"/>
+    </linearGradient>
+    <linearGradient id="pageL" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <linearGradient id="pageR" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fbfdff"/>
+      <stop offset="1" stop-color="#e2e8f0"/>
+    </linearGradient>
+    <linearGradient id="liquid" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#0891b2"/>
+    </linearGradient>
+    <clipPath id="flaskClip">
+      <path d="M313 224a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v8h-5v30l28 48c7 12-1 24-13 24h-50c-12 0-20-12-13-24l28-48v-30h-5z"/>
+    </clipPath>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="url(#bg)"/>
+  <g transform="translate(0,-4)">
+  <ellipse cx="256" cy="376" rx="138" ry="14" fill="#312e81" opacity=".18"/>
+  <path d="M256 208c-42-18-96-22-144-10v150c48-12 102-8 144 10 42-18 96-22 144-10V198c-48-12-102-8-144 10z" fill="#c7d2fe"/>
+  <path d="M256 192c-42-18-96-22-144-10v152c48-12 102-8 144 10z" fill="url(#pageL)"/>
+  <path d="M256 192c42-18 96-22 144-10v152c-48-12-102-8-144 10z" fill="url(#pageR)"/>
+  <path d="M256 196v144" stroke="#c7d2fe" stroke-width="7" stroke-linecap="round" opacity=".7"/>
+  <path d="M216 230h-56l36 33-36 33h56" fill="none" stroke="#4f46e5" stroke-width="15" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M313 224a4 4 0 0 1 4-4h22a4 4 0 0 1 4 4v8h-5v30l28 48c7 12-1 24-13 24h-50c-12 0-20-12-13-24l28-48v-30h-5z" fill="url(#liquid)"/>
+  <g clip-path="url(#flaskClip)">
+    <rect x="286" y="292" width="84" height="46" fill="#0e7490" opacity=".55"/>
+    <circle cx="321" cy="314" r="6" fill="#cffafe" opacity=".95"/>
+    <circle cx="338" cy="322" r="4.5" fill="#cffafe" opacity=".95"/>
+    <circle cx="329" cy="301" r="3.5" fill="#a5f3fc" opacity=".95"/>
+    <path d="M322 234v26l-24 44" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" opacity=".5"/>
+  </g>
+  </g>
+</svg>

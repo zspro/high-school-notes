@@ -1,0 +1,26 @@
+/* 让导航栏下拉菜单的按钮文字可点击跳转 */
+.nav-subject-link {
+  color: inherit;
+  text-decoration: none;
+}
+.nav-subject-link:hover {
+  color: var(--vp-c-brand-1);
+}
+
+/* config.mts 的 stripStyle 删除了 MathJax 自带的 <style>,
+   导致隐藏无障碍 MathML 副本的规则丢失,公式因此显示两次(SVG + MathML)。
+   这里补回 MathJax 官方的隐藏规则,仅保留供屏幕阅读器读取。 */
+mjx-assistive-mml {
+  position: absolute !important;
+  top: 0;
+  left: 0;
+  clip: rect(1px, 1px, 1px, 1px);
+  padding: 1px 0 0 0 !important;
+  border: 0 !important;
+  display: block !important;
+  width: auto !important;
+  overflow: hidden !important;
+}
+mjx-assistive-mml[display="block"] {
+  width: 100% !important;
+}

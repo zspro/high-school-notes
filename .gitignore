@@ -1,0 +1,17 @@
+# 依赖
+node_modules/
+
+# 构建产物与缓存
+knowledge/.vitepress/cache/
+knowledge/.vitepress/dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# 本地工作区备份与原始素材（不随仓库分发）
+笔记/
+
+# 系统文件
+.DS_Store
+Thumbs.db

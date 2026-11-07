@@ -1,0 +1,19 @@
+{
+  "name": "schoollearn",
+  "version": "1.0.0-beta",
+  "releaseVersion": "1.0.0-beta",
+  "notesVersion": "1.1.0-beta",
+  "devDependencies": {
+    "@types/node": "^22",
+    "@waline/client": "^3",
+    "markdown-it-mathjax3": "^5.2.0",
+    "mathjax-full": "3.2.2",
+    "vitepress": "^1.6.4",
+    "vitepress-theme-teek": "^1.5.5"
+  },
+  "scripts": {
+    "docs:dev": "node --max-old-space-size=8192 ./node_modules/vitepress/bin/vitepress.js dev knowledge",
+    "docs:build": "node --max-old-space-size=8192 ./node_modules/vitepress/bin/vitepress.js build knowledge",
+    "docs:preview": "vitepress preview knowledge"
+  }
+}
