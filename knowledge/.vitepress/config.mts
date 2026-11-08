@@ -211,11 +211,18 @@ export default defineConfig({
     // 英文名：按所属科目目录映射，其余归为通用笔记
     const subject = SUBJECT_EN[rel] ?? SUBJECT_EN[section] ?? 'Study Notes'
 
+    // og:title 带上英文名：分享卡片和搜索结果里能直接看到科目
+    const siteTitle = 'An Awesome Note'
+    const pageTitle = title.endsWith(` | ${siteTitle}`)
+      ? title.slice(0, -` | ${siteTitle}`.length)
+      : title
+    const ogTitle = `${pageTitle} (${subject}) | ${siteTitle}`
+
     return [
       ['link', { rel: 'canonical', href: url }],
       ['meta', { property: 'og:type', content: 'article' }],
-      ['meta', { property: 'og:site_name', content: 'An Awesome Note' }],
-      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:site_name', content: siteTitle }],
+      ['meta', { property: 'og:title', content: ogTitle }],
       ['meta', { property: 'og:description', content: description }],
       ['meta', { property: 'og:url', content: url }],
       ['meta', { property: 'og:locale', content: 'zh_CN' }],
