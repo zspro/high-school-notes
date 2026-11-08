@@ -1,15 +1,35 @@
-/* 让导航栏下拉菜单的按钮文字可点击跳转 */
-.nav-subject-link {
+/* ============================================================
+   An Awesome Note · 主题自定义样式
+
+   分节：
+     1. 导航栏
+     2. MathJax 无障碍副本
+     3. 首页彩虹渐变
+     4. 主题增强面板
+     5. Hero 大图标
+     6. 长页面渲染优化
+     7. 路由加载动画
+
+   约定：
+     - 新增样式请归入对应小节，不要追加到文件末尾
+     - 颜色一律取主题变量（--vp-c-*），不要写死色值
+     - 动画时长等数值在使用处注明与 JS 的对应关系
+   ============================================================ */
+
+/* ===== 1. 导航栏 ===== */
+/* 下拉菜单里的学科名整段可点，不只是文字 */
+.awe-nav-link {
   color: inherit;
   text-decoration: none;
 }
-.nav-subject-link:hover {
+.awe-nav-link:hover {
   color: var(--vp-c-brand-1);
 }
 
-/* config.mts 的 stripStyle 删除了 MathJax 自带的 <style>,
-   导致隐藏无障碍 MathML 副本的规则丢失,公式因此显示两次(SVG + MathML)。
-   这里补回 MathJax 官方的隐藏规则,仅保留供屏幕阅读器读取。 */
+/* ===== 2. MathJax 无障碍副本 ===== */
+/* config.mts 的 stripStyle 会丢弃 MathJax 自带的 <style>，
+   此处补回官方规则：隐藏 MathML 副本，仅保留给屏幕阅读器，
+   否则公式会重复渲染（SVG 一份 + MathML 一份）。 */
 mjx-assistive-mml {
   position: absolute !important;
   top: 0;
@@ -25,67 +45,141 @@ mjx-assistive-mml[display="block"] {
   width: 100% !important;
 }
 
-/* ===== 首页彩虹渐变（照官方 docs/index.md 的写法） =====
-   官方做法：静态渐变整段注释掉，改为
-     1) :root 直接定义渐变，颜色引用 --rainbow-prev / --rainbow-next
-     2) :root 无条件 animation: rainbow 12s —— 每帧改写这两个变量
-   结果：渐变永远存在、永远流动；主题色卡只影响按钮/链接等品牌色，与 hero 渐变互不干扰，
-        也就不存在「换个色卡渐变就没了」这种状态。
-   keyframes 提取自官方 tk-index-rainbow.css，重命名 rainbow-home 避免同名冲突。 */
+/* ===== 3. 首页彩虹渐变 ===== */
+/* 标题、图标光晕、图标墨色共用一组变量，由 rainbow-home 动画逐帧驱动
+   （关键帧见 rainbow-keyframes.css）。
+   主题色卡只影响按钮、链接等品牌色，与本组变量互不干扰。 */
 :root {
   --rainbow-prev: #009ff7;
   --rainbow-next: #c76dd1;
 
   --vp-home-hero-name-color: transparent;
-  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, var(--rainbow-prev) 30%, var(--rainbow-next));
-  --vp-home-hero-image-background-image: linear-gradient(-45deg, var(--rainbow-prev) 30%, var(--rainbow-next));
+  --vp-home-hero-name-background: -webkit-linear-gradient(
+    120deg,
+    var(--rainbow-prev) 30%,
+    var(--rainbow-next)
+  );
+  --vp-home-hero-image-background-image: linear-gradient(
+    -45deg,
+    var(--rainbow-prev) 30%,
+    var(--rainbow-next)
+  );
 
-  /* hero 大图标墨色：与标题、光晕同源同步流动 */
   --hero-ink-1: var(--rainbow-prev);
   --hero-ink-2: var(--rainbow-next);
 
   animation: rainbow-home 12s linear infinite;
 }
 
-/* 面板开关「图标跟随彩虹」关闭时：图标墨色回退为当前主题色（brand-1 -> brand-3），
-   因为 246s 慢线已移除，此时是真正静止的；换主题色卡仍会实时换色。 */
-html.icon-rainbow-off {
+/* 面板开关「图标跟随彩虹」关闭：墨色回退为当前主题色，静止不流动 */
+html.awe-icon-rainbow-off {
   --hero-ink-1: var(--vp-c-brand-1);
   --hero-ink-2: var(--vp-c-brand-3);
 }
 
-/* 主题增强面板里的开关行样式（Layout.vue 注入） */
-.tk-icon-rainbow-block {
+/* ===== 4. 主题增强面板 ===== */
+/* 「图标跟随彩虹」开关行（由 Layout.vue 注入到主题色区块下方） */
+.awe-panel-switch {
   margin-top: 8px;
   padding: 10px 14px;
   border-radius: 8px;
 }
-.tk-icon-rainbow-block .label {
+.awe-panel-switch .label {
   font-size: 13px;
   color: var(--vp-c-text-1);
 }
-.tk-icon-rainbow-block input[type="checkbox"] {
+.awe-panel-switch input[type="checkbox"] {
   width: 16px;
   height: 16px;
   cursor: pointer;
   accent-color: var(--vp-c-brand-1);
 }
 
-
-/* 官方首页 12s 双色环关键帧（tk-index-rainbow.css，仅改名） */
-@keyframes rainbow-home{0%{--rainbow-prev:#009ff7;--rainbow-next:#c76dd1}1.25%{--rainbow-prev:#009dfa;--rainbow-next:#cf69c9}2.5%{--rainbow-prev:#009bfc;--rainbow-next:#d566c2}3.75%{--rainbow-prev:#0098fd;--rainbow-next:#dc63ba}5%{--rainbow-prev:#0096fd;--rainbow-next:#e160b3}6.25%{--rainbow-prev:#0093fd;--rainbow-next:#e65eab}7.5%{--rainbow-prev:#2e90fc;--rainbow-next:#e95ca2}8.75%{--rainbow-prev:#4d8dfa;--rainbow-next:#ed5a9a}10%{--rainbow-prev:#638af8;--rainbow-next:#ef5992}11.25%{--rainbow-prev:#7587f5;--rainbow-next:#f15989}12.5%{--rainbow-prev:#8583f1;--rainbow-next:#f25981}13.75%{--rainbow-prev:#9280ed;--rainbow-next:#f25a79}15%{--rainbow-prev:#9f7ce9;--rainbow-next:#f25c71}16.25%{--rainbow-prev:#aa78e3;--rainbow-next:#f15e69}17.5%{--rainbow-prev:#b574dd;--rainbow-next:#ef6061}18.75%{--rainbow-prev:#be71d7;--rainbow-next:#ed635a}20%{--rainbow-prev:#c76dd1;--rainbow-next:#eb6552}21.25%{--rainbow-prev:#cf69c9;--rainbow-next:#e8694b}22.5%{--rainbow-prev:#d566c2;--rainbow-next:#e46c44}23.75%{--rainbow-prev:#dc63ba;--rainbow-next:#e06f3d}25%{--rainbow-prev:#e160b3;--rainbow-next:#db7336}26.25%{--rainbow-prev:#e65eab;--rainbow-next:#d77630}27.5%{--rainbow-prev:#e95ca2;--rainbow-next:#d17a2a}28.75%{--rainbow-prev:#ed5a9a;--rainbow-next:#cc7d24}30%{--rainbow-prev:#ef5992;--rainbow-next:#c6811e}31.25%{--rainbow-prev:#f15989;--rainbow-next:#bf8418}32.5%{--rainbow-prev:#f25981;--rainbow-next:#b98713}33.75%{--rainbow-prev:#f25a79;--rainbow-next:#b28a0f}35%{--rainbow-prev:#f25c71;--rainbow-next:#ab8d0c}36.25%{--rainbow-prev:#f15e69;--rainbow-next:#a3900b}37.5%{--rainbow-prev:#ef6061;--rainbow-next:#9c920d}38.75%{--rainbow-prev:#ed635a;--rainbow-next:#949510}40%{--rainbow-prev:#eb6552;--rainbow-next:#8b9715}41.25%{--rainbow-prev:#e8694b;--rainbow-next:#83991b}42.5%{--rainbow-prev:#e46c44;--rainbow-next:#7a9b21}43.75%{--rainbow-prev:#e06f3d;--rainbow-next:#719d27}45%{--rainbow-prev:#db7336;--rainbow-next:#679e2e}46.25%{--rainbow-prev:#d77630;--rainbow-next:#5da035}47.5%{--rainbow-prev:#d17a2a;--rainbow-next:#51a13c}48.75%{--rainbow-prev:#cc7d24;--rainbow-next:#44a244}50%{--rainbow-prev:#c6811e;--rainbow-next:#34a44b}51.25%{--rainbow-prev:#bf8418;--rainbow-next:#1ba553}52.5%{--rainbow-prev:#b98713;--rainbow-next:#00a65b}53.75%{--rainbow-prev:#b28a0f;--rainbow-next:#00a663}55%{--rainbow-prev:#ab8d0c;--rainbow-next:#00a76c}56.25%{--rainbow-prev:#a3900b;--rainbow-next:#00a874}57.5%{--rainbow-prev:#9c920d;--rainbow-next:#00a87d}58.75%{--rainbow-prev:#949510;--rainbow-next:#00a985}60%{--rainbow-prev:#8b9715;--rainbow-next:#00a98e}61.25%{--rainbow-prev:#83991b;--rainbow-next:#00a996}62.5%{--rainbow-prev:#7a9b21;--rainbow-next:#00a99f}63.75%{--rainbow-prev:#719d27;--rainbow-next:#00a9a7}65%{--rainbow-prev:#679e2e;--rainbow-next:#00a9b0}66.25%{--rainbow-prev:#5da035;--rainbow-next:#00a9b8}67.5%{--rainbow-prev:#51a13c;--rainbow-next:#00a9c0}68.75%{--rainbow-prev:#44a244;--rainbow-next:#00a8c7}70%{--rainbow-prev:#34a44b;--rainbow-next:#00a8cf}71.25%{--rainbow-prev:#1ba553;--rainbow-next:#00a7d5}72.5%{--rainbow-prev:#00a65b;--rainbow-next:#00a6dc}73.75%{--rainbow-prev:#00a663;--rainbow-next:#00a6e2}75%{--rainbow-prev:#00a76c;--rainbow-next:#00a4e7}76.25%{--rainbow-prev:#00a874;--rainbow-next:#00a3ec}77.5%{--rainbow-prev:#00a87d;--rainbow-next:#00a2f1}78.75%{--rainbow-prev:#00a985;--rainbow-next:#00a0f4}80%{--rainbow-prev:#00a98e;--rainbow-next:#009ff7}81.25%{--rainbow-prev:#00a996;--rainbow-next:#009dfa}82.5%{--rainbow-prev:#00a99f;--rainbow-next:#009bfc}83.75%{--rainbow-prev:#00a9a7;--rainbow-next:#0098fd}85%{--rainbow-prev:#00a9b0;--rainbow-next:#0096fd}86.25%{--rainbow-prev:#00a9b8;--rainbow-next:#0093fd}87.5%{--rainbow-prev:#00a9c0;--rainbow-next:#2e90fc}88.75%{--rainbow-prev:#00a8c7;--rainbow-next:#4d8dfa}90%{--rainbow-prev:#00a8cf;--rainbow-next:#638af8}91.25%{--rainbow-prev:#00a7d5;--rainbow-next:#7587f5}92.5%{--rainbow-prev:#00a6dc;--rainbow-next:#8583f1}93.75%{--rainbow-prev:#00a6e2;--rainbow-next:#9280ed}95%{--rainbow-prev:#00a4e7;--rainbow-next:#9f7ce9}96.25%{--rainbow-prev:#00a3ec;--rainbow-next:#aa78e3}97.5%{--rainbow-prev:#00a2f1;--rainbow-next:#b574dd}98.75%{--rainbow-prev:#00a0f4;--rainbow-next:#be71d7}to{--rainbow-prev:#009ff7;--rainbow-next:#c76dd1}}
-
-/* ===== 内联 hero 图标（替换 img 后注入的 SVG）尺寸适配 ===== */
-.hero-icon-inline {
+/* ===== 5. Hero 大图标 ===== */
+/* Layout.vue 把 <img> 换成内联 SVG 后使用；
+   z-index 用于浮在 hero 的 blur 光晕之上。 */
+.awe-hero-icon {
   display: block;
   width: 100%;
   max-width: 320px;
   margin: 0 auto;
   position: relative;
-  z-index: 1; /* 浮到 blur 光晕之上：替换 img 后丢失了 VitePress 给 .VPImage 的层级 */
+  z-index: 1;
 }
-.hero-icon-inline svg {
+.awe-hero-icon svg {
   display: block;
   width: 100%;
   height: auto;
+}
+
+/* ===== 6. 长页面渲染优化 ===== */
+/* 单个笔记页可达 5 万 DOM 节点（一页 900+ 个公式），其中 SVG 占 54%。
+   按下述规则让浏览器跳过视口外内容的布局与绘制，首屏只算可见部分。
+   contain-intrinsic-size 的 auto 关键字会记住已渲染过的真实高度，
+   滚动过一次后位置就准确，不会持续跳动。 */
+.vp-doc > div,
+.vp-doc > table,
+.vp-doc > pre {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 200px;
+}
+
+/* ===== 7. 路由加载动画 ===== */
+/* 渲染自 Layout.vue 的 #teek-loading 插槽，loading 状态由 Teek 的 RouteLoading 管理。
+   环形用 conic-gradient + 径向遮罩挖空，转起来有拖尾感，比纯色边框环更精致。 */
+.awe-loading {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  /* 毛玻璃：底色只留 55%，靠模糊把背后内容虚化，页面骨架隐约可见 */
+  background: color-mix(in srgb, var(--vp-c-bg) 55%, transparent);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+.awe-loading__ring {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 8%,
+    var(--vp-c-brand-1) 92%
+  );
+  -webkit-mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 3px)
+  );
+  mask: radial-gradient(
+    farthest-side,
+    transparent calc(100% - 3px),
+    #000 calc(100% - 3px)
+  );
+  animation: awe-loading-spin 0.75s linear infinite;
+}
+.awe-loading__text {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--vp-c-text-2);
+}
+@keyframes awe-loading-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+/* v-show 切换的淡入淡出（Vue Transition） */
+.awe-fade-enter-active,
+.awe-fade-leave-active {
+  transition: opacity 0.18s ease;
+}
+.awe-fade-enter-from,
+.awe-fade-leave-to {
+  opacity: 0;
 }

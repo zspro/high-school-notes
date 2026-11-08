@@ -3,10 +3,11 @@ import Teek, { walineContext } from "vitepress-theme-teek";
 import "vitepress-theme-teek/index.css";
 // 文档页 H1 渐变（tk-doc-h1-gradient）为原生硬编码紫粉渐变，不随主题色，已停用：
 // 正文标题保持中性色，与「首页炫、正文稳」的定位一致。
+// 文档内容淡入（tk-doc-fade-in，0.7s 上滑淡入）已停用：拖慢正文出现，且会盖住首屏加载指示器。
 import "vitepress-theme-teek/theme-chalk/tk-nav-blur.css";
-import "vitepress-theme-teek/theme-chalk/tk-doc-fade-in.css";
 import "vitepress-theme-teek/theme-chalk/tk-nav-search-button.css";
 import "./custom.css";
+import "./rainbow-keyframes.css";
 import LayoutVue from "./Layout.vue";
 import CustomCatalogue from "./CustomCatalogue.vue";
 import { defineComponent, h, provide } from "vue";

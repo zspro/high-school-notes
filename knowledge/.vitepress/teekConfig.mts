@@ -46,6 +46,7 @@ export const teekConfig = defineTeekConfig({
     },
     teekHome: false, // 不使用 Teek 首页布局
     vpHome: true, // 使用 VitePress 默认首页布局
+    loading: true, // 启用路由加载动画；具体 UI 由 Layout.vue 的 #teek-loading 插槽渲染
     //loading: "正在加载中...", // 页面加载提示文字
     viewTransition: {
         enabled: true, // 启用深浅色切换动画效果

@@ -9,20 +9,23 @@ import { TeX } from 'mathjax-full/js/input/tex.js'
 import { SVG } from 'mathjax-full/js/output/svg.js'
 import { liteAdaptor } from 'mathjax-full/js/adaptors/liteAdaptor.js'
 import { RegisterHTMLHandler } from 'mathjax-full/js/handlers/html.js'
-import { AssistiveMmlHandler } from 'mathjax-full/js/a11y/assistive-mml.js'
 import { AllPackages } from 'mathjax-full/js/input/tex/AllPackages.js'
+
+// 关于无障碍：v3 的 SVG 输出不会生成 <title>（internalSpeechTitles 是死配置，
+// 源码里无人读取），因此没有接入 SRE 语音引擎——它只服务于 assistive-mml 的
+// MathML 副本，而副本已因体积原因移除。朗读信息改由 mjConvert 注入 aria-label 提供。
 
 // ── 自建 MathJax 管线(fontCache:'global' 跨公式共享字形,体积比内置的 'none' 小约 37%)──
 // adaptor / tex 全站复用;SVG 输出实例每页新建(global 缓存需按页隔离)。
 const mjAdaptor = liteAdaptor()
-AssistiveMmlHandler(RegisterHTMLHandler(mjAdaptor)) // 保留无障碍 MathML 副本
+RegisterHTMLHandler(mjAdaptor) // 不生成 MathML 副本：改用 SVG <title> 承担朗读（节点 20 → 1）
 const mjTex = new TeX({
   packages: AllPackages.filter((p) => p !== 'require' && p !== 'autoload'),
 })
 
 // MathJax 容器样式与公式内容无关(实测固定),全站注入一份即可,不在每页重复输出。
 const mjStyleSheet = (() => {
-  const svg = new SVG({ fontCache: 'global' })
+  const svg = new SVG({ fontCache: 'global', internalSpeechTitles: true })
   const doc = mathjax.document('', { InputJax: mjTex, OutputJax: svg })
   doc.convert('x', { display: false })
   return mjAdaptor.textContent(svg.styleSheet(doc))
@@ -33,19 +36,25 @@ let mjPage: { svg: any; doc: any } | null = null
 
 function mjConvert(tex: string, display: boolean) {
   if (!mjPage) {
-    const svg = new SVG({ fontCache: 'global' })
+    const svg = new SVG({ fontCache: 'global', internalSpeechTitles: true })
     mjPage = { svg, doc: mathjax.document('', { InputJax: mjTex, OutputJax: svg }) }
   }
   const node = mjPage.doc.convert(tex, { display })
   // convert 会把每个公式留在 doc 的内部列表里,大量公式时内存持续增长导致构建 OOM,这里转换后立即释放
   mjPage.doc.clear?.()
-  return mjAdaptor.outerHTML(node)
+  // 无障碍：不再生成 MathML 副本后，用 aria-label 提供可朗读文本（TeX 源码）。
+  // 依赖 SRE 语音引擎的 <title> 方案在本项目不可用（未加载 SRE），故走属性方案。
+  // 注意：MathJax 输出的 <svg> 已自带 role="img"，这里只能补 aria-label，重复加 role 会让 Vue 报 Duplicate attribute。
+  return mjAdaptor
+    .outerHTML(node)
+    .replace('<svg ', `<svg aria-label="${escapeAttr(tex)}" `)
 }
 
 // 搜索索引渲染期间置为 true:公式只保留 TeX 源码文本,不生成 SVG(索引只需要文字,能省下大量时间和内存)
 let mjPlainText = false
 const escapeHtml = (s: string) =>
   s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const escapeAttr = (s: string) => escapeHtml(s).replace(/"/g, '&quot;')
 
 // 取出本页累积的全局字形 <defs>,包进隐藏 <svg> 外壳(供 <use> 引用解析),并重置页上下文
 function mjFlushDefs(): string {
@@ -65,6 +74,21 @@ const packageJson = JSON.parse(
 const version = packageJson.version || '1.0.0'
 const releaseVersion = packageJson.releaseVersion || '2024.04.1'
 const notesVersion = packageJson.notesVersion || '2024.04'
+
+// 站点域名：sitemap、canonical、og:url 共用。
+// 只填 origin（协议 + 域名），不要带路径——VitePress 的 sitemap.hostname 会丢弃路径部分。
+// 若站点部署在子路径（GitHub Pages 项目页），需同时配置 base: '/仓库名/'，
+// 下面 transformHead 会把 base 拼进 canonical，sitemap 也会跟随。
+const SITE_URL = 'https://note.zspro.top'
+
+// 各科目目录对应的英文名，用于 <meta name="subject"> 与 og 标签
+const SUBJECT_EN: Record<string, string> = {
+  数学: 'Mathematics',
+  物理: 'Physics',
+  化学: 'Chemistry',
+  readme: 'Introduction',
+  about: 'About'
+}
 
 // 从 md 文件的 frontmatter 或第一个 # 标题读取名称
 function getTitle(filePath: string, fallback: string) {
@@ -129,7 +153,7 @@ function getSubjectNav() {
       children.push({ text, link })
     }
 
-    const linkHtml = `<a href="${subjectLink}" class="nav-subject-link">${subjectName}</a>`
+    const linkHtml = `<a href="${subjectLink}" class="awe-nav-link">${subjectName}</a>`
     if (children.length > 0) {
       navItems.push({ text: linkHtml, items: sortByVolume(children, (c) => c.text) })
     } else {
@@ -161,6 +185,44 @@ export default defineConfig({
     // MathJax 容器样式(与公式内容无关,全站共享一份,避免每页/每公式重复输出)
     ['style', { id: 'mathjax-style' }, mjStyleSheet],
   ],
+  // dev 下 VitePress 会预取视口内的链接，等于让 Vite 批量现场编译其它页面的 MathJax 公式，
+  // 主线程被打满、首屏明显卡顿。构建产物里保留预取（压缩后每页仅百来 KB，可加速站内跳转）。
+  router: {
+    prefetchLinks: process.env.NODE_ENV === 'production',
+  },
+  // 构建后清理 MathJax 的语义标记 data-mml-node。
+  // 它只服务于 MathJax 运行时的表达式浏览器，本站为静态产物、无运行时，纯负载：
+  // 化学第三章实测 17,116 处 / 348 KB，删除后公式渲染不受任何影响。
+  transformHtml(code: string) {
+    return code.replace(/ data-mml-node="[^"]*"/g, '')
+  },
+  // 站点地图：输出 dist/sitemap.xml，供搜索引擎收录
+  sitemap: {
+    hostname: SITE_URL,
+  },
+  // 每页动态注入 canonical 与社交分享标签
+  transformHead({ pageData, title, description, siteConfig }) {
+    const rel = pageData.relativePath.replace(/\.md$/, '')
+    const route = rel.endsWith('index') ? rel.replace(/index$/, '') : rel
+    // base 为空时即部署在根域名；有 base（子路径部署）时自动带上
+    const base = siteConfig.site.base || '/'
+    const url = `${SITE_URL}${base}${route}`.replace(/([^:])\/{2,}/g, '$1/')
+    const section = pageData.relativePath.split('/')[0]
+    // 英文名：按所属科目目录映射，其余归为通用笔记
+    const subject = SUBJECT_EN[rel] ?? SUBJECT_EN[section] ?? 'Study Notes'
+
+    return [
+      ['link', { rel: 'canonical', href: url }],
+      ['meta', { property: 'og:type', content: 'article' }],
+      ['meta', { property: 'og:site_name', content: 'An Awesome Note' }],
+      ['meta', { property: 'og:title', content: title }],
+      ['meta', { property: 'og:description', content: description }],
+      ['meta', { property: 'og:url', content: url }],
+      ['meta', { property: 'og:locale', content: 'zh_CN' }],
+      ['meta', { name: 'subject', content: subject }],
+      ['meta', { name: 'twitter:card', content: 'summary' }],
+    ]
+  },
   markdown: {
     math: true,
     config: (md) => {
