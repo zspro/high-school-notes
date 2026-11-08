@@ -98,9 +98,10 @@ export const teekConfig = defineTeekConfig({
         enabled: false, // 禁用文章最近更新栏
     },
     comment: {
-        provider: "waline",
+        provider: "artalk",
         options: {
-            serverURL: "https://waline.zspro.top",
+            server: "https://artalk.zspro.top",
+            site: "An Awesome Note",
         },
     },
 });
