@@ -23,3 +23,4 @@ certs/
 
 # playwright 调试产物
 .playwright-cli/
+knowledge/.vitepress/dist.zip
