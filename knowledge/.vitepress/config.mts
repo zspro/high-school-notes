@@ -1,6 +1,7 @@
 // .vitepress/config.mts
 import { defineConfig } from 'vitepress'
 import { teekConfig } from "./teekConfig.mts";
+import { createRewrites } from "vitepress-theme-teek/config";
 import { sortByVolume } from "./volumeOrder.mts";
 import fs from 'node:fs'
 import path from 'node:path'
@@ -177,6 +178,10 @@ function getSubjectNav() {
 // https://vitepress.dev/reference/site-config
 // VitePress 配置
 export default defineConfig({
+  // 永久链接 Rewrite：URL = frontmatter 的 permalink（英文），
+  // 彻底避开服务器对中文路径的编码问题（Windows 宝塔下中文 URL 404）。
+  // srcDir 用绝对路径：build 与 dev 的 cwd 不同，相对路径会解析失败。
+  rewrites: createRewrites({ srcDir: path.resolve(__dirname, '..') }),
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],

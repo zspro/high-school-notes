@@ -1,7 +1,7 @@
 // .vitepress/teekConfig.mts
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 import { sortByVolume } from "./volumeOrder.mts";
-import { PERMALINK_MAP } from "./theme/permalinkMap";
+import { PERMALINK_MAP } from "./theme/permalinkMap.ts";
 
 // Teek 主题配置
 export const teekConfig = defineTeekConfig({
