@@ -1,6 +1,7 @@
 // .vitepress/teekConfig.mts
 import { defineTeekConfig } from "vitepress-theme-teek/config";
 import { sortByVolume } from "./volumeOrder.mts";
+import { PERMALINK_MAP } from "./theme/permalinkMap";
 
 // Teek 主题配置
 export const teekConfig = defineTeekConfig({
@@ -13,10 +14,13 @@ export const teekConfig = defineTeekConfig({
             // sidebar 插件生成的链接为 /xxx/index，而 VitePress 路由为 /xxx/
             // 导致侧边栏当前项无法高亮，这里统一将 /index 结尾的链接替换为 /
             sidebarResolved: (data: any) => {
+                // 链接英文化：按 PERMALINK_MAP 把文件路径换成 permalink
                 const fix = (items: any[]) => {
                     for (const item of items) {
-                        if (item.link?.endsWith('/index')) {
-                            item.link = item.link.replace(/\/index$/, '/')
+                        if (item.link) {
+                            const key = item.link.replace(/\/index$/, '')
+                            if (PERMALINK_MAP[key]) item.link = PERMALINK_MAP[key]
+                            else if (item.link.endsWith('/index')) item.link = item.link.replace(/\/index$/, '/')
                         }
                         if (item.items) fix(item.items)
                     }
@@ -40,8 +44,16 @@ export const teekConfig = defineTeekConfig({
         },
         catalogueOption: {
             titleFormMd: true, // 目录页同样使用 md 一级标题
-            // 学科目录页的册卡片同样按教材顺序排列
-            catalogueItemResolved: (data: any[]) => sortByVolume(data, (i) => i.title ?? ''),
+            // 目录页链接同样英文化
+            catalogueItemResolved: (data: any[]) => {
+                for (const item of data) {
+                    if (item.link) {
+                        const key = item.link.replace(/\/index$/, '')
+                        if (PERMALINK_MAP[key]) item.link = PERMALINK_MAP[key]
+                    }
+                }
+                return sortByVolume(data, (i) => i.title ?? '')
+            },
         },
     },
     teekHome: false, // 不使用 Teek 首页布局

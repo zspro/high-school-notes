@@ -1,4 +1,5 @@
 ---
+permalink: /math/
 title: 数学
 catalogue: true
 path: 数学

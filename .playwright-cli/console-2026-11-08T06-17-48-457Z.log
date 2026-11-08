@@ -1,0 +1,85 @@
+[     445ms] [ERROR] Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec. @ http://localhost:5173/math/compulsory-1/ch01-sets-and-logic/index.md?import&t=1794118668892:0
+[     453ms] [ERROR] Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec. @ http://localhost:5173/math/compulsory-1/ch01-sets-and-logic.md?import&t=1794118668892:0
+[   56471ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:559
+[   56477ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:5173/:0
+[   57496ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   58517ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   59532ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   60546ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   61565ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   62577ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   68110ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:559
+[   68148ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavScreenAppearance.vue?vue&type=style&index=0&scoped=ec660873&lang.css:0
+[   68148ms] [ERROR] Failed to load resource: net::ERR_SOCKET_NOT_CONNECTED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavScreenMenuLink.vue:0
+[   68148ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavScreenMenuGroup.vue:0
+[   68149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavScreenTranslations.vue?vue&type=style&index=0&scoped=62b6f2f6&lang.css:0
+[   68149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPDocOutlineItem.vue?vue&type=style&index=0&scoped=e38bd136&lang.css:0
+[   68149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPSidebarItem.vue?vue&type=style&index=0&scoped=80d22469&lang.css:0
+[   68149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPDocFooterLastUpdated.vue?vue&type=style&index=0&scoped=62cfd0db&lang.css:0
+[   68149ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPDocAsideOutline.vue?vue&type=style&index=0&scoped=bd4f4602&lang.css:0
+[   68153ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPSwitch.vue:0
+[   68153ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPSwitchAppearance.vue?vue&type=style&index=0&scoped=705ada99&lang.css:0
+[   68153ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/composables/flyout.js?v=5a3ab9ff:0
+[   68153ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPMenu.vue:0
+[   68153ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPFlyout.vue?vue&type=style&index=0&scoped=d7038234&lang.css:0
+[   68156ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPMenuLink.vue?vue&type=style&index=0&scoped=dc5f3646&lang.css:0
+[   68159ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarMenu.vue?vue&type=style&index=0&scoped=237e7c3d&lang.css:0
+[   68160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarSocialLinks.vue?vue&type=style&index=0&scoped=e554abfc&lang.css:0
+[   68160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarTitle.vue?vue&type=style&index=0&scoped=9d460077&lang.css:0
+[   68160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarMenuLink.vue:0
+[   68160ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarMenuGroup.vue:0
+[   68161ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/@fs/D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/client/theme-default/components/VPNavBarTranslations.vue?vue&type=style&index=0&scoped=5c22d0f6&lang.css:0
+[   68162ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   68172ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/favicon.ico:0
+[   69185ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   70200ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   71215ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   72234ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   73244ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   74253ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   75267ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   76281ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   77289ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   78303ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   79316ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   80332ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   81343ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   82353ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   83372ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   84395ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   85421ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   86432ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   87461ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   88481ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   89489ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   90509ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   91526ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   92531ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[   93547ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  100289ms] [ERROR] Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "text/html". Strict MIME type checking is enforced for module scripts per HTML spec. @ http://localhost:5173/math/compulsory-1/ch01-sets-and-logic/index.md?import&t=1794118768703:0
+[  102638ms] [ERROR] [Teek Error] Waline initialization failed. Please configure the 'jsLink' and 'serverURL' or provide the waline instance @ http://localhost:5173/.vitepress/cache/deps/vitepress-theme-teek.js?v=5a3ab9ff:22877
+[  103951ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://waline.zspro.top/api/comment?path=%2Fmath%2Fcompulsory-1%2Fch01-sets-and-logic.html&pageSize=10&page=1&lang=zh-CN&sortBy=insertedAt_desc:0
+[  104066ms] [ERROR] Cannot read properties of undefined (reading 'count') @ http://localhost:5173/.vitepress/cache/deps/@waline_client.js?v=5a3ab9ff:3139
+[  277095ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:559
+[  277099ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  278119ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  279129ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  281933ms] [ERROR] [Teek Error] Waline initialization failed. Please configure the 'jsLink' and 'serverURL' or provide the waline instance @ http://localhost:5173/.vitepress/cache/deps/vitepress-theme-teek.js?v=a1ef8ee1:22877
+[  283137ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://waline.zspro.top/api/comment?path=%2Fmath%2Fcompulsory-1%2Fch01-sets-and-logic.html&pageSize=10&page=1&lang=zh-CN&sortBy=insertedAt_desc:0
+[  283140ms] [ERROR] Cannot read properties of undefined (reading 'count') @ http://localhost:5173/.vitepress/cache/deps/@waline_client.js?v=39ac964c:3139
+[  367840ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:559
+[  367847ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  368905ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  369951ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  371013ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  372050ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  373118ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  378139ms] [ERROR] [Teek Error] Waline initialization failed. Please configure the 'jsLink' and 'serverURL' or provide the waline instance @ http://localhost:5173/.vitepress/cache/deps/vitepress-theme-teek.js?v=cf268aee:22877
+[  379305ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://waline.zspro.top/api/comment?path=%2Fmath%2Fcompulsory-1%2Fch01-sets-and-logic.html&pageSize=10&page=1&lang=zh-CN&sortBy=insertedAt_desc:0
+[  379308ms] [ERROR] Cannot read properties of undefined (reading 'count') @ http://localhost:5173/.vitepress/cache/deps/@waline_client.js?v=cf268aee:3139
+[  379541ms] [LOG] [vite] server connection lost. Polling for restart... @ http://localhost:5173/@vite/client:559
+[  379545ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  380567ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_REFUSED @ http://localhost:5173/:0
+[  382706ms] [ERROR] [Teek Error] Waline initialization failed. Please configure the 'jsLink' and 'serverURL' or provide the waline instance @ http://localhost:5173/.vitepress/cache/deps/vitepress-theme-teek.js?v=cf268aee:22877
+[  383425ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ https://waline.zspro.top/api/comment?path=%2Fmath%2Fcompulsory-1%2Fch01-sets-and-logic.html&pageSize=10&page=1&lang=zh-CN&sortBy=insertedAt_desc:0
+[  383426ms] [ERROR] Cannot read properties of undefined (reading 'count') @ http://localhost:5173/.vitepress/cache/deps/@waline_client.js?v=cf268aee:3139

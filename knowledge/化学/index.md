@@ -1,4 +1,5 @@
 ---
+permalink: /chemistry/
 title: 化学
 catalogue: true
 path: 化学

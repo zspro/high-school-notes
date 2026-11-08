@@ -1,0 +1,15 @@
+- generic [active] [ref=e1]:
+  - generic:
+    - paragraph [ref=e4]: 正在加载…
+    - text: Ctrl
+  - generic [ref=e7]:
+    - generic [ref=e8]: URI malformed
+    - generic [ref=e9]: at decodeURI (<anonymous>) at file:///D:/project/schoollearn/node_modules/.pnpm/vitepress@1.6.4_@algolia+cl_69ec5014853032d7408efdcc4c150f3f/node_modules/vitepress/dist/node/chunk-D3CUZ4fa.js:17121:24 at call (file:///D:/project/schoollearn/node_modules/.pnpm/vite@5.4.21_@types+node@22.19.19/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41364:7) at next (file:///D:/project/schoollearn/node_modules/.pnpm/vite@5.4.21_@types+node@22.19.19/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41308:5) at app.handle (file:///D:/project/schoollearn/node_modules/.pnpm/vite@5.4.21_@types+node@22.19.19/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41311:3) at Server.app (file:///D:/project/schoollearn/node_modules/.pnpm/vite@5.4.21_@types+node@22.19.19/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:41176:37
+    - generic [ref=e10]:
+      - text: Click outside, press Esc key, or fix the code to dismiss.You can also disable this overlay by setting
+      - code [ref=e11]: server.hmr.overlay
+      - text: to
+      - code [ref=e12]: "false"
+      - text: in
+      - code [ref=e13]: vite.config.js
+      - text: .

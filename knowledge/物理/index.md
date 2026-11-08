@@ -1,4 +1,5 @@
 ---
+permalink: /physics/
 title: 物理
 catalogue: true
 path: 物理
