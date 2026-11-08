@@ -181,7 +181,14 @@ export default defineConfig({
   // 永久链接 Rewrite：URL = frontmatter 的 permalink（英文），
   // 彻底避开服务器对中文路径的编码问题（Windows 宝塔下中文 URL 404）。
   // srcDir 用绝对路径：build 与 dev 的 cwd 不同，相对路径会解析失败。
-  rewrites: createRewrites({ srcDir: path.resolve(__dirname, '..') }),
+  rewrites: (() => {
+    const map = createRewrites({ srcDir: path.resolve(__dirname, '..') }) as Record<string, string>
+    // 插件 bug：permalink: / 归一化后剥成空串再补 .md，得到损坏映射 index.md → .md，
+    // 首页 chunk 被输出成 .md.js，SSR 却按路由规则找 index.md.js → ERR_MODULE_NOT_FOUND，
+    // dist 里 index.html 缺失。首页本来就输出 /index.html（即 /），直接删掉这条损坏的 rewrite。
+    delete map['index.md']
+    return map
+  })(),
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
