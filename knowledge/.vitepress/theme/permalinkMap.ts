@@ -1,6 +1,7 @@
-// 中文路由 → 英文 permalink 映射表（由 frontmatter 扫描生成，共 71 条）
+// 中文路由 → 英文 permalink 映射表（由 frontmatter 扫描生成，共 73 条）
 // 用途：sidebarResolved / catalogueItemResolved 把侧边栏与目录页链接切换为英文。
 export const PERMALINK_MAP: Record<string, string> = {
+  "/about": "/about/",
   "/化学": "/chemistry/",
   "/化学/index": "/chemistry/",
   "/化学/化学必修一笔记/01-第一章_物质及其变化": "/chemistry/compulsory-1/ch01-matter-and-changes/",

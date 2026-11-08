@@ -10,16 +10,16 @@ hero:
   actions:
     - theme: brand
       text: 开始阅读
-      link: /readme/readme
+      link: /about/
     - theme: alt
       text: 数学笔记
-      link: /数学/
+      link: /math/
     - theme: alt
       text: 物理笔记
-      link: /物理/
+      link: /physics/
     - theme: alt
       text: 化学笔记
-      link: /化学/
+      link: /chemistry/
   image:
     src: /hero-icon.svg
     alt: An Awesome Note
@@ -27,15 +27,15 @@ hero:
 features:
   - title: 数学
     details: 必修一、必修二，选择性必修一至三。集合、函数、向量、立体几何、圆锥曲线、导数、概率统计。
-    link: /数学/
+    link: /math/
     linkText: 查看目录
   - title: 物理
     details: 必修一至三，选择性必修一至三。运动与力、能量、电磁学、振动与波、光、热学、原子物理。
-    link: /物理/
+    link: /physics/
     linkText: 查看目录
   - title: 化学
     details: 必修一、必修二，选择性必修一至三。元素化合物、反应原理、物质结构、有机化学。
-    link: /化学/
+    link: /chemistry/
     linkText: 查看目录
 
 ---

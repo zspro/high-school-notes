@@ -1,28 +1,29 @@
 ---
+permalink: /about/
 title: 关于
+sidebar: false
 ---
 
-<script setup>
-const releaseVersion = __RELEASE_VERSION__
-const siteVersion = __SITE_VERSION__
-const notesVersion = __NOTES_VERSION__
-const vitepressVersion = __VITEPRESS_VERSION__
-const teekVersion = __TEEK_VERSION__
-</script>
+欢迎来到 **An Awesome Note**！这是一个基于中国普通高中教科书（人教版）的学科笔记项目，覆盖数学、物理、化学三科，目前仍在持续更新中。
 
-这是一个基于中国普通高中教科书的学科笔记项目。
+## 收录内容
 
-## 项目简介
+| 学科 | 必修 | 选择性必修 |
+|:---:|:---|:---|
+| [数学](/math/) | 必修一、必修二 | 选择性必修一、二、三 |
+| [物理](/physics/) | 必修一、必修二、必修三 | 选择性必修一、二、三 |
+| [化学](/chemistry/) | 必修一、必修二 | 选择性必修一、二、三 |
 
-本站收录了数学、物理、化学等学科的学习笔记，旨在帮助学生更好地理解和掌握高中知识。
+每章笔记大致包含：来龙去脉、基础精讲、深度理解、知识串联、隐性考点、易错警示、思想方法。标注"超出教材要求"的内容仅供拓展。
 
-## 联系方式
+## 如何使用？
 
-如有问题或建议，欢迎在页面底部的评论区留言。
+左侧目录可以打开对应章节查看（移动设备在顶部菜单展开）；顶部导航栏可以按学科、按册跳转，搜索栏支持关键词搜索。
 
-## 版本信息
+## 内容说明
 
-- 总版本：v{{ releaseVersion }}
-- 网站版本：{{ siteVersion }}
-- 笔记版本：{{ notesVersion }}
-- UI框架：VitePress {{ vitepressVersion }} + Teek {{ teekVersion }}
+本站笔记内容目前均由 Kimi（AI）生成，仅供参考学习。
+
+## 反馈
+
+发现错误或有建议，欢迎在页面底部评论区留言。
