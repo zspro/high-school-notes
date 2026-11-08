@@ -322,6 +322,10 @@ export default defineConfig({
     sidebarMenuLabel: '菜单',
     returnToTopLabel: '回到顶部',
     langMenuLabel: '多语言',
+    // 导航栏右上角的 GitHub 图标（桌面端在主题切换旁，移动端在全屏菜单底部）
+    socialLinks: [
+      { icon: 'github', link: 'https://github.com/zspro/high-school-notes' }
+    ],
     nav: [
       { text: '主页', link: '/' },
       ...getSubjectNav(),
