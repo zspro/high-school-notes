@@ -20,3 +20,6 @@ Thumbs.db
 certs/
 *.key
 *.pem
+
+# playwright 调试产物
+.playwright-cli/
