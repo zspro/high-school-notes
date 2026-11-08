@@ -45,25 +45,16 @@ schoollearn/
 │   ├── 化学/             # 化学笔记
 │   └── .vitepress/       # VitePress 配置与主题
 ├── scripts/              # 构建辅助脚本
-│   ├── import_kimi.py    # 将 Kimi 导出的笔记导入站点目录
+│   ├── import_kimi.py    # 将 Kimi 生成的笔记导入站点目录
 │   ├── fixmd.py          # Markdown 公式格式修复
 │   ├── mjcheck.mjs       # TeX 公式语法检查
 │   └── htmlcheck.py      # HTML 标签检查
 └── package.json
 ```
 
-## 笔记导入
+## 内容说明
 
-如果你也在使用 Kimi 生成/整理笔记，可以用导入脚本将导出的笔记转换为站点格式：
-
-```bash
-python scripts/import_kimi.py <解压后的 Kimi 目录> [knowledge]
-
-# 导入后检查 TeX 公式语法
-node scripts/mjcheck.mjs "knowledge/数学/数学必修二笔记/"*.md
-```
-
-文件名前的序号（如 `07-第七章_复数.md`）决定侧边栏中的章节顺序。
+本站笔记内容目前均由 [Kimi](https://kimi.moonshot.cn/)（AI）生成，仅供参考学习。如发现错误，欢迎通过 Issue 或页面底部评论区指正。
 
 ## 贡献
 
@@ -73,6 +64,6 @@ node scripts/mjcheck.mjs "knowledge/数学/数学必修二笔记/"*.md
 
 本项目内容以 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)（署名-非商业性使用-相同方式共享 4.0 国际）协议发布：
 
-- ✅ 自由分享与改编 —— 需署名并注明修改
-- ❌ 不得用于商业目的
-- 🔁 衍生作品需以相同协议发布
+- 自由分享与改编 —— 需署名并注明修改
+- 不得用于商业目的
+- 衍生作品需以相同协议发布

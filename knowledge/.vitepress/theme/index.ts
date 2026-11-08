@@ -5,7 +5,6 @@ import "vitepress-theme-teek/theme-chalk/tk-doc-h1-gradient.css";
 import "vitepress-theme-teek/theme-chalk/tk-nav-blur.css";
 import "vitepress-theme-teek/theme-chalk/tk-doc-fade-in.css";
 import "vitepress-theme-teek/theme-chalk/tk-nav-search-button.css";
-import "vitepress-theme-teek/theme-chalk/tk-index-rainbow.css";
 import "./custom.css";
 import LayoutVue from "./Layout.vue";
 import CustomCatalogue from "./CustomCatalogue.vue";
