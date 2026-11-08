@@ -3,6 +3,7 @@ import { defineConfig } from 'vitepress'
 import { teekConfig } from "./teekConfig.mts";
 import { createRewrites } from "vitepress-theme-teek/config";
 import { sortByVolume } from "./volumeOrder.mts";
+import { PERMALINK_MAP } from "./theme/permalinkMap";
 import fs from 'node:fs'
 import path from 'node:path'
 import { mathjax } from 'mathjax-full/js/mathjax.js'
@@ -87,7 +88,6 @@ const SUBJECT_EN: Record<string, string> = {
   数学: 'Mathematics',
   物理: 'Physics',
   化学: 'Chemistry',
-  readme: 'Introduction',
   about: 'About'
 }
 
@@ -107,6 +107,14 @@ const navOrder: Record<string, number> = {
   '数学': 1,
   '物理': 2,
   '化学': 3,
+}
+
+// 站内链接必须走英文 permalink：SPA 按 URL 反推模块名（/数学/ → 数学.md），
+// permalink 重写后 hashmap 里只有 math.md 等英文 key，中文 URL 前端直接抛
+// Page not found（请求不会发到服务器，nginx 配置无法补救）。
+// PERMALINK_MAP 的 key 是中文路径（无尾斜杠），value 是英文 permalink（带尾斜杠）。
+function toPermalink(link: string) {
+  return PERMALINK_MAP[link.replace(/\/$/, '')] ?? link
 }
 
 // 自动扫描 knowledge 下的子目录，生成带下拉菜单的导航项
@@ -151,14 +159,15 @@ function getSubjectNav() {
         ? `/${dir}/${sub}/`
         : `/${dir}/${sub}/${subFiles[0].replace(/\.md$/, '')}`
 
-      children.push({ text, link })
+      children.push({ text, link: toPermalink(link) })
     }
 
-    const linkHtml = `<a href="${subjectLink}" class="awe-nav-link">${subjectName}</a>`
+    const navLink = toPermalink(subjectLink)
+    const linkHtml = `<a href="${navLink}" class="awe-nav-link">${subjectName}</a>`
     if (children.length > 0) {
       navItems.push({ text: linkHtml, items: sortByVolume(children, (c) => c.text) })
     } else {
-      navItems.push({ text: subjectName, link: subjectLink })
+      navItems.push({ text: subjectName, link: navLink })
     }
   }
 
@@ -187,13 +196,23 @@ export default defineConfig({
     // 首页 chunk 被输出成 .md.js，SSR 却按路由规则找 index.md.js → ERR_MODULE_NOT_FOUND，
     // dist 里 index.html 缺失。首页本来就输出 /index.html（即 /），直接删掉这条损坏的 rewrite。
     delete map['index.md']
+    // 目标改为目录式：math.md → math/index.md，每个 permalink 输出 目录/index.html。
+    // 收益一（服务器）：URL 形态统一为目录式，nginx 只需标准 try_files，不再需要
+    //   「平铺 .html 或目录 index」的二义性探测（此前引发 404/403/双斜杠连环坑）。
+    // 收益二（前端）：SPA 按 URL 反推模块名时 /math/ → math_index.md 精确命中 hashmap，
+    //   站内跳转不再依赖「去尾斜杠再试 _index」的猜测链。
+    for (const [file, target] of Object.entries(map)) {
+      if (target.endsWith('.md') && !target.endsWith('/index.md')) {
+        map[file] = target.replace(/\.md$/, '/index.md')
+      }
+    }
     return map
   })(),
   head: [
     ['link', { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     ['link', { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' }],
-    ['link', { rel: 'dns-prefetch', href: 'https://waline.zspro.top' }],
-    ['link', { rel: 'preconnect', href: 'https://waline.zspro.top', crossorigin: '' }],
+    ['link', { rel: 'dns-prefetch', href: 'https://artalk.zspro.top' }],
+    ['link', { rel: 'preconnect', href: 'https://artalk.zspro.top', crossorigin: '' }],
     // MathJax 容器样式(与公式内容无关,全站共享一份,避免每页/每公式重复输出)
     ['style', { id: 'mathjax-style' }, mjStyleSheet],
   ],
@@ -201,6 +220,12 @@ export default defineConfig({
   // 主线程被打满、首屏明显卡顿。构建产物里保留预取（压缩后每页仅百来 KB，可加速站内跳转）。
   router: {
     prefetchLinks: process.env.NODE_ENV === 'production',
+  },
+  // 评论已切 Artalk（JS 从 artalk.zspro.top 运行时加载），teek 打包图里残留的
+  // Waline chunk(~120KB raw) 在任何页面都不会执行；VitePress 会把 app chunk 的
+  // dynamicImports 一律加成 modulepreload，这里全程过滤，不让它白占带宽和解析时间。
+  shouldPreload(file: string, page: string) {
+    return !file.includes('waline')
   },
   // 构建后清理 MathJax 的语义标记 data-mml-node。
   // 它只服务于 MathJax 运行时的表达式浏览器，本站为静态产物、无运行时，纯负载：
@@ -329,7 +354,7 @@ export default defineConfig({
     nav: [
       { text: '主页', link: '/' },
       ...getSubjectNav(),
-      { text: '关于', link: '/about' },
+      { text: '关于', link: '/about/' },
     ],
   },
   vite: {
