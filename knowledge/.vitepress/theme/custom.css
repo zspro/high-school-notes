@@ -183,3 +183,10 @@ html.awe-icon-rainbow-off {
 .awe-fade-leave-to {
   opacity: 0;
 }
+
+/* ── CLS 修复（Lighthouse 实测 0.345，唯一偏移源）──────────────────────────
+   Waline 挂载时评论表单（.wl-comment）突然撑开 #tk-comment，造成布局突变。
+   给评论容器预留最小高度，表单填充时不再位移。 */
+#tk-comment {
+  min-height: 340px;
+}

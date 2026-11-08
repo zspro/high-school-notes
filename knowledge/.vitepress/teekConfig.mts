@@ -10,6 +10,11 @@ export const teekConfig = defineTeekConfig({
         sidebarOption: {
             ignoreList: ["assets"], // 侧边栏忽略 assets 目录
             titleFormMd: true, // 章节名取 md 的一级标题（"第一章 运动的描述"），而不是文件名
+            // 目录式 rewrites 下 pageData.relativePath 是英文重写路径（chemistry/.../index.md），
+            // VitePress 按 relativePath 前缀匹配 sidebar key：默认 filePath 规则生成中文 key
+            // （/化学/），永远匹配不上 → 全站文章页无侧边栏。rewrites 规则的 key 取
+            // rewrite 目标首段（/chemistry/ 等），与 relativePath 精确匹配。
+            resolveRule: "rewrites",
             // 修复 sidebar 中 index.md 链接不匹配的问题
             // sidebar 插件生成的链接为 /xxx/index，而 VitePress 路由为 /xxx/
             // 导致侧边栏当前项无法高亮，这里统一将 /index 结尾的链接替换为 /
